@@ -1,7 +1,8 @@
 # Write your MySQL query statement below
 WITH second_sal AS (
-    SELECT id, salary,
-           DENSE_RANK() OVER (ORDER BY salary DESC) AS rnk
+    SELECT id,
+           salary,
+           DENSE_RANK() OVER (ORDER BY salary DESC) rnk
     FROM Employee
 )
 SELECT MAX(salary) AS SecondHighestSalary
