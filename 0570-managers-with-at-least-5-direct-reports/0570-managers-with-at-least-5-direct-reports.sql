@@ -2,5 +2,5 @@
 SELECT a.name
 FROM Employee a 
 JOIN Employee b ON a.id = b.managerId
-GROUP BY a.name
+GROUP BY a.name, a.id
 HAVING COUNT(*) >= 5
