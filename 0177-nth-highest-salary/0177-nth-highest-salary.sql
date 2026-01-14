@@ -1,13 +1,13 @@
-CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+CREATE FUNCTION getNthHighestSalary(n INT) RETURNS INT
 BEGIN
   RETURN (
-      SELECT salary
-      FROM (
-          SELECT salary,
-                 DENSE_RANK() OVER (ORDER BY salary DESC) AS rnk
-          FROM Employee
-      ) AS ranked   -- ✅ alias is REQUIRED
-      WHERE rnk = N
-      LIMIT 1
+    WITH n_salary AS (
+        SELECT salary,
+               DENSE_RANK() OVER (ORDER BY salary DESC) AS rnk
+        FROM Employee
+    )
+    SELECT MAX(salary)
+    FROM n_salary
+    WHERE rnk = n
   );
 END
