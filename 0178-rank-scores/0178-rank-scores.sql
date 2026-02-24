@@ -2,11 +2,11 @@
 WITH rank_score AS (
     SELECT id,
            score,
-           DENSE_RANK() OVER (ORDER BY score DESC) AS 'rank'
+           DENSE_RANK() OVER (ORDER BY score DESC) AS rnk
     FROM Scores
 )
-SELECT score,
-       'rank'
+SELECT score, rnk AS 'rank'
 FROM rank_score
+ORDER BY score DESC
 
 
