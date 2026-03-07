@@ -40,3 +40,11 @@ SQL &amp; Data Analytics Enthusiast | AWS | Python | Power BI | Tableau | Busine
 ## 📫 Connect with Me
 - LinkedIn: www.linkedin.com/in/pranayshukla06
 - Email: pranayshukla1020@gmail.com
+
+<!---LeetCode Topics Start-->
+# LeetCode Topics
+## Database
+| Problem Name | Difficulty |
+| ------- | ------- |
+| [0262-trips-and-users](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/0262-trips-and-users/) | Hard |
+<!---LeetCode Topics End-->
