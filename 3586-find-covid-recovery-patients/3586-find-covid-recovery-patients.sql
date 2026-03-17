@@ -29,3 +29,6 @@ JOIN first_positive fp
 JOIN first_negative_after_positive fn
     ON p.patient_id = fn.patient_id
 ORDER BY recovery_time ASC, p.patient_name ASC;
+
+
+
