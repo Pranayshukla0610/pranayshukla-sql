@@ -1,34 +1,26 @@
 # Write your MySQL query statement below
 WITH first_positive AS (
-    SELECT
-        patient_id,
-        MIN(test_date) AS first_positive_date
-    FROM covid_tests
-    WHERE result = 'Positive'
+    SELECT p.patient_id,
+           MIN(t.test_date) AS first_positive_test
+    FROM patients p
+    JOIN covid_tests t ON p.patient_id = t.patient_id
+    WHERE result = 'positive'
     GROUP BY patient_id
 ),
-first_negative_after_positive AS (
-    SELECT
-        t.patient_id,
-        MIN(t.test_date) AS first_negative_date
-    FROM covid_tests t
-    JOIN first_positive fp
-        ON t.patient_id = fp.patient_id
-       AND t.test_date > fp.first_positive_date
-    WHERE t.result = 'Negative'
-    GROUP BY t.patient_id
+first_negative AS (
+    SELECT f.patient_id,
+           MIN(t.test_date) AS first_negative_test
+    FROM first_positive f 
+    JOIN covid_tests t ON f.patient_id = t.patient_id
+    AND t.test_date > f.first_positive_test
+    WHERE t.result = 'negative'
+    GROUP BY f.patient_id
 )
-SELECT
-    p.patient_id,
-    p.patient_name,
-    p.age,
-    DATEDIFF(fn.first_negative_date, fp.first_positive_date) AS recovery_time
-FROM patients p
-JOIN first_positive fp
-    ON p.patient_id = fp.patient_id
-JOIN first_negative_after_positive fn
-    ON p.patient_id = fn.patient_id
-ORDER BY recovery_time ASC, p.patient_name ASC;
-
-
-
+SELECT a.patient_id,
+       c.patient_name,
+       c.age,
+       DATEDIFF(b.first_negative_test,a.first_positive_test) AS recovery_time
+FROM first_positive a 
+JOIN first_negative b ON a.patient_id = b.patient_id
+JOIN patients c ON a.patient_id = c.patient_id
+ORDER BY recovery_time ASC, c.patient_name ASC
