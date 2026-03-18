@@ -49,5 +49,6 @@ SQL &amp; Data Analytics Enthusiast | AWS | Python | Power BI | Tableau | Busine
 | [0262-trips-and-users](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/0262-trips-and-users/) | Hard |
 | [3482-analyze-organization-hierarchy](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/3482-analyze-organization-hierarchy/) | Hard |
 | [3554-find-category-recommendation-pairs](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/3554-find-category-recommendation-pairs/) | Hard |
+| [3580-find-consistently-improving-employees](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/3580-find-consistently-improving-employees/) | Medium |
 | [3586-find-covid-recovery-patients](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/3586-find-covid-recovery-patients/) | Medium |
 <!---LeetCode Topics End-->
