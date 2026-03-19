@@ -51,4 +51,5 @@ SQL &amp; Data Analytics Enthusiast | AWS | Python | Power BI | Tableau | Busine
 | [3554-find-category-recommendation-pairs](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/3554-find-category-recommendation-pairs/) | Hard |
 | [3580-find-consistently-improving-employees](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/3580-find-consistently-improving-employees/) | Medium |
 | [3586-find-covid-recovery-patients](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/3586-find-covid-recovery-patients/) | Medium |
+| [3601-find-drivers-with-improved-fuel-efficiency](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/3601-find-drivers-with-improved-fuel-efficiency/) | Medium |
 <!---LeetCode Topics End-->
