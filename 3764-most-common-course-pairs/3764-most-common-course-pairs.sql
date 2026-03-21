@@ -1,25 +1,31 @@
 # Write your MySQL query statement below
-WITH top_performer AS (
+WITH top_performers AS (
     SELECT user_id
     FROM course_completions
     GROUP BY user_id
-    HAVING AVG(course_rating) >= 4 AND COUNT(*) >= 5
+    HAVING COUNT(*) >= 5
+       AND AVG(course_rating) >= 4
 ),
-course_sequence AS (
-    SELECT a.user_id,
-           b.course_name AS first_course,
-           LEAD(b.course_name) OVER (PARTITION BY a.user_id ORDER BY completion_date) AS second_course
-    FROM top_performer a 
-    JOIN course_completions b ON a.user_id = b.user_id
-),
-consecutive_pairs AS (
-    SELECT first_course,
-           second_course
-    FROM course_sequence
+
+ordered_courses AS (
+    SELECT 
+        cc.user_id,
+        cc.course_name,
+        cc.completion_date,
+        LEAD(cc.course_name) OVER (
+            PARTITION BY cc.user_id 
+            ORDER BY cc.completion_date
+        ) AS next_course
+    FROM course_completions cc
+    JOIN top_performers tp 
+        ON cc.user_id = tp.user_id
 )
-SELECT first_course,
-       second_course,
-       COUNT(*) AS transition_count
-FROM consecutive_pairs
-GROUP BY first_course, second_course
-ORDER BY transition_count DESC, first_course ASC, second_course ASC
+
+SELECT 
+    course_name AS first_course,
+    next_course AS second_course,
+    COUNT(*) AS transition_count
+FROM ordered_courses
+WHERE next_course IS NOT NULL
+GROUP BY course_name, next_course
+ORDER BY transition_count DESC, first_course, second_course;
