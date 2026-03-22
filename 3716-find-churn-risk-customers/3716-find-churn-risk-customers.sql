@@ -1,49 +1,38 @@
-WITH first_event AS (
-    SELECT 
-        user_id,
-        MIN(event_date) AS first_date
+WITH sort_event AS (
+    SELECT *,
+           ROW_NUMBER() OVER (PARTITION BY user_id 
+           ORDER BY event_date DESC) AS rn
     FROM subscription_events
-    GROUP BY user_id
 ),
-
 last_event AS (
-    SELECT *
-    FROM (
-        SELECT *,
-               ROW_NUMBER() OVER(PARTITION BY user_id ORDER BY event_date DESC) AS rn
-        FROM subscription_events
-    ) t
+    SELECT user_id,
+           event_date,
+           event_type,
+           plan_name,
+           monthly_amount
+    FROM sort_event
     WHERE rn = 1
 ),
-
-max_amount AS (
-    SELECT 
-        user_id,
-        MAX(monthly_amount) AS max_historical_amount
+value_sort AS (
+    SELECT user_id,
+           MIN(event_date) AS first_date,
+           MAX(event_date) AS last_date,
+           MAX(monthly_amount) AS max_amount,
+           SUM(CASE WHEN event_type='downgrade' 
+           THEN 1 ELSE 0 END) AS downgrade_count
     FROM subscription_events
     GROUP BY user_id
-),
-
-downgrade_users AS (
-    SELECT DISTINCT user_id
-    FROM subscription_events
-    WHERE event_type = 'downgrade'
 )
-
-SELECT
-    l.user_id,
-    l.plan_name AS current_plan,
-    l.monthly_amount AS current_monthly_amount,
-    m.max_historical_amount,
-    DATEDIFF(l.event_date, f.first_date) AS days_as_subscriber
-FROM last_event l
-JOIN first_event f ON l.user_id = f.user_id
-JOIN max_amount m ON l.user_id = m.user_id
-JOIN downgrade_users d ON l.user_id = d.user_id
-WHERE 
-    l.event_type <> 'cancel'
-    AND l.monthly_amount < 0.5 * m.max_historical_amount
-    AND DATEDIFF(l.event_date, f.first_date) >= 60
-ORDER BY 
-    days_as_subscriber DESC,
-    l.user_id ASC;
+SELECT a.user_id,
+       a.plan_name AS current_plan,
+       a.monthly_amount AS current_monthly_amount,
+       b.max_amount AS max_historical_amount,
+       DATEDIFF(b.last_date,b.first_date) AS days_as_subscriber
+FROM last_event a 
+JOIN value_sort b ON a.user_id = b.user_id
+WHERE a.event_type != 'cancel'
+AND b.downgrade_count >= 1
+AND DATEDIFF(b.last_date,b.first_date) >= 60
+AND a.monthly_amount < 0.5 * b.max_amount
+ORDER BY days_as_subscriber DESC, user_id ASC
+       
