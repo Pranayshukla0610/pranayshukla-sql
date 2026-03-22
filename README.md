@@ -48,6 +48,7 @@ SQL &amp; Data Analytics Enthusiast | AWS | Python | Power BI | Tableau | Busine
 | ------- | ------- |
 | [0185-department-top-three-salaries](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/0185-department-top-three-salaries/) | Hard |
 | [0262-trips-and-users](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/0262-trips-and-users/) | Hard |
+| [1934-confirmation-rate](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/1934-confirmation-rate/) | Medium |
 | [3482-analyze-organization-hierarchy](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/3482-analyze-organization-hierarchy/) | Hard |
 | [3554-find-category-recommendation-pairs](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/3554-find-category-recommendation-pairs/) | Hard |
 | [3580-find-consistently-improving-employees](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/3580-find-consistently-improving-employees/) | Medium |
