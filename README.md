@@ -46,6 +46,7 @@ SQL &amp; Data Analytics Enthusiast | AWS | Python | Power BI | Tableau | Busine
 ## Database
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0185-department-top-three-salaries](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/0185-department-top-three-salaries/) | Hard |
 | [0262-trips-and-users](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/0262-trips-and-users/) | Hard |
 | [3482-analyze-organization-hierarchy](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/3482-analyze-organization-hierarchy/) | Hard |
 | [3554-find-category-recommendation-pairs](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/3554-find-category-recommendation-pairs/) | Hard |
