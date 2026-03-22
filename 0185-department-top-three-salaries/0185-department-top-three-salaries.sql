@@ -1,13 +1,13 @@
 # Write your MySQL query statement below
-WITH high_earners AS (
-    SELECT e.id,
-           e.name AS Employee,
-           e.salary AS Salary,
-           d.name AS Department,
-           DENSE_RANK() OVER (PARTITION BY d.name ORDER BY e.salary DESC) AS rnk
-    FROM Employee e 
-    JOIN Department d ON e.departmentId = d.id
+WITH unique_salaries AS (
+    SELECT *,
+           DENSE_RANK() OVER (PARTITION BY departmentId
+           ORDER BY salary DESC) AS rnk
+    FROM Employee
 )
-SELECT Department, Employee, Salary
-FROM high_earners
+SELECT b.name AS Department,
+       a.name AS Employee,
+       a.Salary
+FROM unique_salaries a 
+JOIN Department b ON a.departmentId = b.id
 WHERE rnk <= 3
