@@ -46,6 +46,7 @@ SQL &amp; Data Analytics Enthusiast | AWS | Python | Power BI | Tableau | Busine
 ## Database
 | Problem Name | Difficulty |
 | ------- | ------- |
+| [0184-department-highest-salary](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/0184-department-highest-salary/) | Medium |
 | [0185-department-top-three-salaries](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/0185-department-top-three-salaries/) | Hard |
 | [0262-trips-and-users](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/0262-trips-and-users/) | Hard |
 | [1934-confirmation-rate](https://github.com/Pranayshukla0610/pranayshukla-sql/tree/main/1934-confirmation-rate/) | Medium |
